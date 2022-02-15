@@ -1,0 +1,174 @@
+\documentclass[a4paper,15pt]{article}
+
+ %opening
+ \title{Quantum Mechanics: Chapter 4 Problems}
+ \author{Salmanul Faris}
+ \usepackage{amsmath}
+ \usepackage{amssymb, amsthm}
+ \usepackage{braket}
+ \usepackage{bbold}
+
+ \addtolength{\oddsidemargin}{-.875in}
+ \addtolength{\evensidemargin}{-.875in}
+ \addtolength{\textwidth}{1.75in}
+ \addtolength{\topmargin}{-.875in}
+ \addtolength{\textheight}{1.90in}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 4.47}
+\subsection*{Solve 3D QHO using seperation of variables in
+Spherical Coordinates (as the potential is spherically symmetrical).
+Find the recursion formulas and determine the allowed energies.}
+
+\begin{equation}
+  \psi(r, \theta, \phi) = R(r)Y(\theta, \phi)
+\end{equation}
+
+where
+
+\begin{equation}
+  Y(\theta, \phi) = \sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}
+  {(l+m)!}}e^{im\phi}P^m_l(\cos(\theta))
+\end{equation}
+
+The Radial Equation is
+
+\[
+  -\frac{\hbar^2}{2m}\frac{d^2u}{dr^2}+\left[V+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}\right]
+  u = Eu
+\]
+
+since $V(r)=\frac{m\omega^2r^2}{2}$,
+
+\[
+  -\frac{\hbar^2}{2m}\frac{d^2u}{dr^2}+\left[\frac{m\omega^2r^2}{2}+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}\right]
+  u = Eu
+\]
+
+define \(\xi \equiv \sqrt{\frac{m \omega}{\hbar}}r\) and then \(\frac{d^2u}{dr^2}\) becomes
+\( \frac{m\omega}{\hbar}\frac{d^2u}{d\xi^2} \).
+
+\[
+  -\frac{\hbar^2}{2m}\frac{m\omega}{\hbar}\frac{d^2u}{d\xi^2}+\left[\frac
+  {m\omega^2r^2}{2}\frac{\hbar}{m \omega r^2} \xi^2+\frac{\hbar^2}{2m}\frac{l(l+1)}{r^2}\right]u = Eu
+\]
+
+multiply by \(\frac{2}{\hbar \omega}\) on both sides and transpose
+the effective potential to the right side.
+
+\[
+  \frac{d^2u}{d\xi^2}=\left[\xi^2+\frac{\hbar}{m \omega}\frac{l(l+1)}{r^2}
+  -\frac{2E}{\hbar \omega}\right]u
+\]
+
+define \(K \equiv \frac{2E}{\hbar \omega}\)
+
+\begin{equation}
+  \frac{d^2u}{d\xi^2}=\left[\xi^2+\frac{l(l+1)}{\xi^2}-K\right]u
+\end{equation}
+
+To get an approximate solution, For \(\xi>>1\)
+
+\[
+  \frac{d^2u}{d \xi^2} \approx \xi^2 u
+\]
+\[
+  \implies u(\xi)
+  \approx Ae^{\frac{-\xi^2}{2}} + Be^{\frac{\xi^2}{2}}
+  \implies u(\xi) \approx Ae^{\frac{-\xi^2}{2}} \text{(B=0 otherwise
+  the equation will blow up)}
+\]
+
+For \(\xi<<1\),
+
+\[\frac{d^2u}{d\xi^2} \approx \frac{l(l+1)}{\xi^2}u \]
+
+\[ \implies u(\xi) \approx C\xi^{l+1}+D\xi^{-l} \implies u(\xi)
+\approx C \xi^{l+1} \text{(D=0 otherwise } 1/\xi^l\to \infty)\]
+
+\(\therefore u(\xi) = \xi^{l+1}e^{\frac{-\xi^2}{2}}v(\xi)\). hopefully,
+$v(\xi)$ will turn out to be simpler than \(u(\xi)\).
+
+\begin{align}
+\frac{du}{d\xi} &= (\xi^{l+1})' (e^{\frac{-\xi^2}{2}}v(\xi))
+ + (\xi^{l+1}) (e^{\frac{-\xi^2}{2}}v(\xi))' \nonumber \\
+ &= ((l+1)\xi^{l})(e^{\frac{-\xi^2}{2}}v(\xi)(\xi))+(\xi^{l+1})(-\xi
+ e^{\frac{-\xi^2}{2}}v(\xi)+\frac{dv}{d\xi}e^{\frac{-\xi^2}{2}}) \nonumber \\
+ &= (l+1)\xi^l e^{\frac{-\xi^2}{2}}v + \xi^{l+1}e^{\frac{-\xi^2}{2}}v'-
+ \xi^{l+2}e^{\frac{-\xi^2}{2}}v
+\end{align}
+
+and
+
+\begin{align}
+\frac{d^2u}{d\xi^2}
+&=-2(l+3)\xi^{l+1}e^{\frac{-\xi^2}{2}}v+2(l+1)\xi^le^{\frac{-\xi^2}{2}}v'-
+2\xi^{l+2}e^{\frac{-\xi^2}{2}}v'+ \nonumber \\ &\xi^{l+1}e^{\frac{-\xi^2}{2}}v''-K\xi^{l+1}
+e^{\frac{-\xi^2}{2}}v
+\end{align}
+
+\(\therefore\) Equation (3) becomes
+
+\begin{equation}
+v''+2v'\left( \frac{l+1}{\xi}-\xi \right)+(K-2l-3)v=0
+\end{equation}
+\[
+\text{Let } v(\xi) \equiv \sum_{j=0}^\infty a_j\xi^{j} \text{ so, } v' =
+\sum_{j=1}^\infty j a_j\xi^{j-1}=\sum_{j=0}^\infty j a_j\xi^{j-1}\text
+{ and }\sum_{j=2}^\infty j(j-1) a_j\xi^{j-2}
+\]
+
+Substitute this to (6) and we get:
+
+\[
+\sum_{j=2}^\infty j(j-1) a_j\xi^{j-2}+2(l+1)\sum_{j=1}^\infty j a_j\xi^{j-2}-
+\sum_{j=1}^\infty j a_j\xi^{j}+(K-2l-3)\sum_{j=0}^\infty a_j\xi^{j} = 0
+\]
+
+For the first two sums, make \(j \to j+2\), note that \(\sum_{j=1}^\infty j a_j
+\xi^{j-2}=a_1\xi^{-1}+\sum_{j=0}^\infty
+(j+2) a_{j+2}\xi^{j}\)
+
+\[
+\sum_{j=0}^\infty (j+2)(j+1) a_{j+2}\xi^{j}+2(l+1)\left(a_1\xi^{-1}+\sum_{j=0}^\infty
+(j+2) a_{j+2}\xi^{j}\right)-2\sum_{j=0}^\infty j a_j\xi^{j}+(K-2l-3)\sum_{j=0}^\infty
+ a_j\xi^{j} = 0
+\]
+
+Assuming \(a_1 = 0\)
+
+\[
+\sum_{j=0}^\infty [(j+2)(j+1) a_{j+2}\xi^{j}+2(l+1)(j+2) a_{j+2}\xi^{j}- 2j a_j
+\xi^{j}+(K-2l-3)a_j\xi^{j}] = 0
+\]
+
+In order for the series to converge, \(\xi\) should have power 0
+
+\begin{align}
+  &=[(j+2)(j+2l+3)a_{j+2}+(K-2j-2l-3)a_j]=0 \nonumber \\
+  &=(j+2)(j+2l+3)a_{j+2}=(-K+2j+2l+3)a_j \nonumber \\
+  &=\boxed{a_{j+2}=\frac{(2j+2l+3-K)}{(j+2)(j+2l+3)} a_j}
+\end{align}
+
+We have assumed \(a_1 = 0\) so we get a sequence \(a_0, a_2, etc\). The sequence
+must terminate \(\therefore \exists j_{max}: a_{j_{max}+2}=0\)
+
+\[
+\therefore 2j_{max} + 2l + 3 -K =0
+\]
+since \(K \equiv \frac{2E}{\hbar \omega}\)
+
+\[
+E=\left(j_{max}+l+\frac{2}{3}\right)\hbar \omega
+\]
+
+Define \(j_{max}+l \equiv n \)
+
+\[
+\therefore E_n=\left(n+\frac{2}{3}\right)\hbar \omega
+\]
+
+\end{document}
