@@ -1,0 +1,383 @@
+\documentclass{book}
+
+\title{An Introduction to Tensor Calculus}
+\newcommand{\booksubtitle}{A Latex Template for a Science Textbook}
+\newcommand{\booklicense}{Creative Commons Zero 1.0 Universal}
+
+\author{Author Name}
+% Author subtitle could be a university or a geographical location, for example
+\newcommand{\authorsubtitle}{City, Country}
+
+% Create convenient commands \booktitle and \bookauthor
+\makeatletter
+\newcommand{\booktitle}{\@title}
+\newcommand{\bookauthor}{\@author}
+\makeatother
+
+% This utf8 declaration is not needed for versions of latex > 2018 but may
+% be helpful for older software. Eventually it may not be worth keeping.
+\usepackage[utf8]{inputenc}
+\usepackage{fix-cm}  % this package allows large \fontsize
+\usepackage{tikz}    % this is for graphics. e.g. rectangle on title page
+\usepackage{amsmath, amssymb} % Used by equations
+
+% The following dimensions specify 4.75" X 7.5" content on 6 3/8" by 9 1/4"
+% paper. The paper width and height can be tweaked as required and the content
+% should size to fit within the margins accordingly.
+%
+% The (inside) bindingoffset should be larger for books with more pages. Some
+% standard recommended sizes are .375in minimum up to 1in for 600+ page books.
+% Sizes .75in and .875in are also recommended roughly at 150 and 400 pages.
+\usepackage[bindingoffset=0.75in,
+            left=.5in, right=.5in,
+            top=.8125in, bottom=.9375in,
+            paperwidth=6.375in, paperheight=9.25in]{geometry}
+% Here is an alternative geometry for reading on letter size paper:
+% \usepackage[margin=.75in, paperwidth=8.5in, paperheight=11in]{geometry}
+
+\renewcommand{\contentsname}{Table of Contents} % default is {Contents}
+\usepackage{makeidx}
+\makeindex % Initialize an index so we can add entries with \index
+
+\begin{document}
+\frontmatter
+
+% ---- Half Title Page ----
+% current geometry will be restored after title page
+\newgeometry{top=1.75in,bottom=.5in}
+\begin{titlepage}
+\begin{flushleft}
+
+% Title
+\textbf{\fontfamily{qcs}\fontsize{48}{54}\selectfont Science\\Textbook\\}
+
+% Draw a line 4pt high
+\par\noindent\rule{\textwidth}{4pt}\\
+
+% Subtitle
+% Shaded box from left to right. Text node is midway (centered).
+\begin{tikzpicture}
+\shade[bottom color=lightgray,top color=white]
+    (0,0) rectangle (\textwidth, 1.5)
+    node[midway] {\textbf{\large \textit{\booksubtitle}}};
+\end{tikzpicture}
+
+% Edition Number
+\begin{flushright}
+\Large First Edition
+\end{flushright}
+
+% \vspace{\fill}
+\vspace{\fill}
+
+\end{flushleft}
+\end{titlepage}
+\restoregeometry
+% ---- End of Half Title Page ----
+
+
+% No page numbers on the Frontispiece page
+\thispagestyle{empty}
+
+
+% ---- Title Page ----
+% current geometry will be restored after title page
+\newgeometry{top=1.75in,bottom=.5in}
+\begin{titlepage}
+\begin{flushleft}
+
+% Title
+\textbf{\fontfamily{qcs}\fontsize{48}{54}\selectfont Science\\Textbook\\}
+
+% Draw a line 4pt high
+\par\noindent\rule{\textwidth}{4pt}\\
+
+% Shaded box from left to right with Subtitle
+% The text node is midway (centered).
+\begin{tikzpicture}
+\shade[bottom color=lightgray,top color=white]
+    (0,0) rectangle (\textwidth, 1.5)
+    node[midway] {\textbf{\large \textit{\booksubtitle}}};
+\end{tikzpicture}
+
+% Edition Number
+\begin{flushright}
+\Large First Edition
+\end{flushright}
+
+\vspace{\fill}
+
+% Author and Location
+\textbf{\large \bookauthor}\\[3.5pt]
+\textbf{\large \textit{\authorsubtitle}}
+
+\vspace{\fill}
+
+% Self Publishing Logo. Free to use: CC0 license.
+% The source file is book.svg. If you change the svg, you must then convert
+% it to pdf. There are many online and offline tools available to do that.
+\begin{center}
+%\includegraphics{booksvg.pdf}\\[4pt]
+\fontfamily{lmtt}\small{Self Publishers Worldwide\\
+Seattle San Francisco New York\\
+London Paris Rome Beijing Barcelona}
+\end{center}
+
+\end{flushleft}
+\end{titlepage}
+\restoregeometry
+% ---- End of Title Page ----
+
+% Do not show page numbers on colophon page
+\thispagestyle{empty}
+
+\begin{flushleft}
+\vspace*{\fill}
+This book was typeset using \LaTeX{} software.\\
+\vspace{\fill}
+Copyright \textcopyright{} \the\year{}  \bookauthor\\
+License: \booklicense
+\end{flushleft}
+
+% A title page resets the page # to 1, but the second title page
+% was actually page 3. So add two to page counter.
+\addtocounter{page}{2}
+
+% The asterisk excludes chapter from the table of contents.
+\chapter*{Preface}
+
+\[
+\left.
+\begin{aligned}
+  &\sqrt{{dX_{1}}^{2} + {dX_{2}}^{2} + {dX_{3}}^{2}} \\
+  &\qquad
+  \begin{aligned}
+  &= \left(1 + \frac{\kappa}{8\pi} \int \frac{\sigma\, dV_{0}}{r}\right)
+     \sqrt{{dx_{1}}^{2} + {dx_{2}}^{2} + {dx_{3}}^{2}}, \\
+dT &= \left(1 - \frac{\kappa}{8\pi} \int \frac{\sigma\, dV_{0}}{r}\right) dl.
+\end{aligned}
+\end{aligned}
+\right\}
+\]
+
+% Three-level Table of Contents
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+\mainmatter
+
+\chapter{Prerequisites}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\section{First Principles}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Examples}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Excessive Elaborations}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Long Winded Conclusion}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Exercises}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\section{Theory vs Practice}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Examples}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Excessive Elaborations}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Long Winded Conclusion}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\subsection{Exercises}
+
+The theory of relativity is intimately connected
+with the theory of space and time. I shall therefore begin with a brief
+investigation of the origin of our ideas of space and time, although in
+doing so I know that I introduce a controversial subject. The object of all
+science, whether natural science or psychology, is to co-ordinate our
+experiences and to bring them into a logical system. How are our customary
+ideas of space and time related to the character of our experiences?
+
+\foreach \x in {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+    {\index{\x 1}\index{\x 2}}
+
+\chapter{Tensors}
+
+
+
+\chapter{Metric Tensor}
+
+Consider a vector that is represented in the Cartesian coordinate system and ***
+
+You can use the Pythagoras' Theorem \(a^2+b^2=c^2\) to find its length
+
+\begin{align*}
+  ||\vec{v}||^2
+  &= \left(v^1\right)^2+\left(v^2\right)^2 \\
+  &= \left(3\right)^2+\left(4\right)^2 \\
+  &= 25
+\end{align*}
+\begin{align*}
+  \therefore ||\vec{v}||=\sqrt{25}=5
+\end{align*}
+
+
+But what if the vector is measured in this coordinate system? How would you measure its length? Let's try using Pythagoras' theorem and see if we get the same answer.
+
+ \begin{align*}
+||\vec{v}||^2
+&= \left(\tilde{v}^1\right)^2+\left(\tilde{v}^2\right)^2 \\
+&= \left(\frac{7}{5}\right)^2+\left(\frac{13}{5}\right)^2 \\
+&= \frac{218}{25}
+\end{align*}
+
+\begin{align*}
+\therefore ||\vec{v}|| = \sqrt{\frac{218}{25}} \approx 2.95?
+\end{align*}
+
+We got a different answer this time because Pythagoras' theorem only holds for the Cartesian coordinate system. In order to find the length of a vector in another coordinate system, recall that:
+
+ \begin{align*}
+   ||\vec{v}||^2
+   = \vec{v}\cdot\vec{v}
+ \end{align*}
+
+ If we represent the vector in terms of the Cartesian coordinate system, we get the Pythagoras' Theorem back.
+
+\begin{align*}
+  \vec{v}\cdot\vec{v}
+  &= (v^1\vec{e}_1+v^2\vec{e}_2) \cdot (v^1\vec{e}_1+v^2\vec{e}_2) \\
+  &= v^1v^1(\vec{e}_1\cdot \vec{e}_1)+v^1v^2(\vec{e}_1\cdot \vec{e}_2)+v^2v^1(\vec{e}_2\cdot \vec{e}_1)+v^2v^2(\vec{e}_2\cdot \vec{e}_2) \\
+  &= (v^1)^2(\vec{e}_1\cdot \vec{e}_1)+2v^1v^2(\vec{e}_1\cdot \vec{e}_2)+(v^2)^2(\vec{e}_2\cdot \vec{e}_2) \\
+  &= (v^1)^2+(v^2)^2 \tag{Because \(\vec{e}_i\cdot\vec{e}_j = \delta_{ij}\)}
+ \end{align*}
+
+But if we represent the vector in terms of the basis vectors \(\tilde{e_1}\) and \(\tilde{e_2}\) we get:
+
+\begin{align}
+  \vec{v}\cdot\vec{v}
+  &= (\tilde{v}^1\tilde{e}_1+\tilde{v}^2\tilde{e}_2) \cdot (\tilde{v}^1\tilde{e}_1+\tilde{v}^2\tilde{e}_2) \nonumber\\
+  &= \tilde{v}^1\tilde{v}^1(\tilde{e}_1\cdot \tilde{e}_1)+\tilde{v}^1\tilde{v}^2(\tilde{e}_1\cdot \tilde{e}_2)+\tilde{v}^2\tilde{v}^1(\tilde{e}_2\cdot \tilde{e}_1)+\tilde{v}^2\tilde{v}^2(\tilde{e}_2\cdot \tilde{e}_2) \nonumber \\
+  &= (\tilde{v}^1)^2(\tilde{e}_1\cdot \tilde{e}_1)+2\tilde{v}^1\tilde{v}^2(\tilde{e}_1\cdot \tilde{e}_2)+(\tilde{v}^2)^2(\tilde{e}_2\cdot \tilde{e}_2)
+\end{align}
+
+To find \((\tilde{e}_1\cdot \tilde{e}_1)\), \((\tilde{e}_1\cdot \tilde{e}_2\)),\((\tilde{e}_2\cdot \tilde{e}_2)\) we represent them in Cartesian coordinates first
+
+\begin{align*}
+  \tilde{e}_1\cdot\tilde{e}_1
+  &=(2\vec{e}_1+1\vec{e}_2)\cdot(2\vec{e}_1+1\vec{e}_2)\\
+  &=2^2(\vec{e}_1\cdot\vec{e}_1)+2(2)(1)(\vec{e}_1\cdot\vec{e}_2)+1^2(\vec{e}_2\cdot\vec{e}_2)\\
+  &=2^2+1=5
+\end{align*}
+
+\begin{align*}
+  \tilde{e}_1\cdot\tilde{e}_1
+  &=(2\vec{e}_1+1\vec{e}_2)\cdot(2\vec{e}_1+1\vec{e}_2)\\
+  &=2^2(\vec{e}_1\cdot\vec{e}_1)+2(2)(1)(\vec{e}_1\cdot\vec{e}_2)+1^2(\vec{e}_2\cdot\vec{e}_2)\\
+  &=2^2+1=5
+\end{align*}
+
+\begin{align*}
+  \tilde{e}_1\cdot\tilde{e}_1
+  &=(2\vec{e}_1+1\vec{e}_2)\cdot(2\vec{e}_1+1\vec{e}_2)\\
+  &=2^2(\vec{e}_1\cdot\vec{e}_1)+2(2)(1)(\vec{e}_1\cdot\vec{e}_2)+1^2(\vec{e}_2\cdot\vec{e}_2)\\
+  &=2^2+1=5
+\end{align*}
+
+The metric or fundamental tensor allows you to define fundamental properties like lengths and angles in a coordinate space
+
+
+
+\chapter{Derivatives of Tensors}
+
+
+
+\chapter{Curvature}
+
+
+
+\chapter{Bibliography}
+
+%\backmatter
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+
+\end{document}
